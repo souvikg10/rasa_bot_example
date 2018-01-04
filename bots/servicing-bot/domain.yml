@@ -1,0 +1,33 @@
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - card_lost
+  
+entities:
+ - card_type
+
+action_factory: remote
+
+slots:
+  card_type:
+    type: text
+
+templates:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_card_lost_type:
+  - text: "Which type of card you have lost?"
+
+  utter_card_lost:
+  - text: "So you have lost your {card_type}"
+
+  utter_goodbye:
+  - text: "Bye"
+
+actions:
+  - utter_greet
+  - utter_card_lost
+  - utter_card_lost_type
+  - utter_goodbye
