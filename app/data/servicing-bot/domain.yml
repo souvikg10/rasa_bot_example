@@ -7,8 +7,6 @@ intents:
 entities:
  - card_type
 
-action_factory: remote
-
 slots:
   card_type:
     type: text
@@ -21,7 +19,7 @@ templates:
   - text: "Which type of card you have lost?"
 
   utter_card_lost:
-  - text: "So you have lost your {card_type}"
+  - text: "So you have lost your {card_type} card. Please contact 911 to have it replaced immediately"
 
   utter_goodbye:
   - text: "Bye"

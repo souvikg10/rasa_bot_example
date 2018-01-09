@@ -1,0 +1,33 @@
+version: '3'
+services:
+  training_nlu:
+    image: rasa_core_test
+    build: .
+    volumes:
+      - $PWD/app/projects:/app/projects
+      - $PWD/app/logs:/app/logs
+      - $PWD/app/data:/app/data
+    command: run python -m rasa_nlu.train -c configs/config_servicing.json --fixed_model_name current
+  training_core:
+    image: rasa_core_test
+    volumes:
+      - $PWD/app/projects:/app/projects
+      - $PWD/app/logs:/app/logs
+      - $PWD/app/data:/app/data
+    depends_on:
+      - training_nlu
+    command: run python -m rasa_core.train -s data/servicing-bot/story/stories.md -d data/servicing-bot/domain.yml -o data/servicing-bot/dialogue --epochs 100
+  rasa_core:
+    image: rasa_core_test
+    volumes:
+      - $PWD/app/projects:/app/projects
+      - $PWD/app/logs:/app/logs
+      - $PWD/app/data:/app/data
+    ports:
+      - "5000:5000"
+      - "5005:5005"
+      - "5002:80"
+    depends_on:
+      - training_nlu
+      - training_core
+    command: run python -m rasa_core.run -d data/servicing-bot/dialogue -u data/servicing-bot/rasa_servicing_en_nlu/current --port 5002 --connector facebook --credentials data/servicing-bot/credentials.yml

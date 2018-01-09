@@ -1,4 +1,8 @@
-## path card lost for credit             
+## path greet
+* _greet
+  - utter_greet
+
+## path card lost for credit
 * _greet              
   - utter_greet
 * _card_lost               

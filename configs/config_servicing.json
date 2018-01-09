@@ -1,8 +1,8 @@
 {
-  "project":"rasa-servicing_en_nlu",
+  "project":"rasa_servicing_en_nlu",
   "language": "en",	
   "pipeline": "spacy_sklearn",
-  "path" : "./projects",
-  "data" : "./bots/servicing-bot/data/rasa-servicing.json",
+  "path" : "./data/servicing-bot",
+  "data" : "./data/servicing-bot/nlu/rasa-servicing.json",
   "cors_origin" : ["*"]
 }

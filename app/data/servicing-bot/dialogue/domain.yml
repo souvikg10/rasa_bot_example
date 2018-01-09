@@ -1,0 +1,29 @@
+action_factory: null
+actions:
+- utter_greet
+- utter_card_lost
+- utter_card_lost_type
+- utter_goodbye
+config:
+  store_entities_as_slots: true
+entities:
+- card_type
+intents:
+- greet
+- goodbye
+- affirm
+- card_lost
+slots:
+  card_type:
+    type: text
+templates:
+  utter_card_lost:
+  - text: So you have lost your {card_type} card. Please contact 911 to have it replaced
+      immediately
+  utter_card_lost_type:
+  - text: Which type of card you have lost?
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hey! How are you?
+topics: []

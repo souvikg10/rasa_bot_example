@@ -1,4 +1,4 @@
-{
+﻿{
   "rasa_nlu_data": {
     "regex_features": [
       {
@@ -6,33 +6,31 @@
         "pattern": "[0-9]{5}"
       }
     ],
-    "entity_synonyms": [
-      
-    ],
+    "entity_synonyms": [],
     "common_examples": [
       {
-        "text": "hey", 
-        "intent": "greet", 
+        "text": "hey",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "howdy", 
-        "intent": "greet", 
+        "text": "howdy",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
         "text": "hey there",
-        "intent": "greet", 
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "hello", 
-        "intent": "greet", 
+        "text": "hello",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "hi", 
-        "intent": "greet", 
+        "text": "hi",
+        "intent": "greet",
         "entities": []
       },
       {
@@ -51,18 +49,18 @@
         "entities": []
       },
       {
-        "text": "yes", 
-        "intent": "affirm", 
+        "text": "yes",
+        "intent": "affirm",
         "entities": []
-      }, 
+      },
       {
-        "text": "yep", 
-        "intent": "affirm", 
+        "text": "yep",
+        "intent": "affirm",
         "entities": []
-      }, 
+      },
       {
-        "text": "yeah", 
-        "intent": "affirm", 
+        "text": "yeah",
+        "intent": "affirm",
         "entities": []
       },
       {
@@ -126,7 +124,7 @@
         "entities": [
           {
             "start": 19,
-            "end": 25,
+            "end": 24,
             "value": "debit",
             "entity": "card_type"
           }
@@ -157,13 +155,13 @@
         ]
       },
       {
-        "text": "I can't find my bancontact", 
-        "intent": "card_lost", 
+        "text": "I can't find my bancontact",
+        "intent": "card_lost",
         "entities": [
           {
-            "start": 16, 
-            "end": 26, 
-            "value": "bancontact", 
+            "start": 16,
+            "end": 26,
+            "value": "debit",
             "entity": "card_type"
           }
         ]
@@ -175,34 +173,34 @@
           {
             "start": 17,
             "end": 27,
-            "value": "mistercash",
+            "value": "debit",
             "entity": "card_type"
           }
         ]
-      },     
+      },
       {
-        "text": "bye", 
-        "intent": "goodbye", 
+        "text": "bye",
+        "intent": "goodbye",
         "entities": []
-      }, 
+      },
       {
-        "text": "goodbye", 
-        "intent": "goodbye", 
+        "text": "goodbye",
+        "intent": "goodbye",
         "entities": []
-      }, 
+      },
       {
-        "text": "good bye", 
-        "intent": "goodbye", 
+        "text": "good bye",
+        "intent": "goodbye",
         "entities": []
-      }, 
+      },
       {
-        "text": "stop", 
-        "intent": "goodbye", 
+        "text": "stop",
+        "intent": "goodbye",
         "entities": []
-      }, 
+      },
       {
-        "text": "end", 
-        "intent": "goodbye", 
+        "text": "end",
+        "intent": "goodbye",
         "entities": []
       },
       {

@@ -1,0 +1,223 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "hey"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "howdy"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "hey there"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "hello"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "hi"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "good morning"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "good evening"
+      }, 
+      {
+        "entities": [], 
+        "intent": "greet", 
+        "text": "dear sir"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "yes"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "yep"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "yeah"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "indeed"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "that's right"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "ok"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "great"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "right, thank you"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "correct"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "great choice"
+      }, 
+      {
+        "entities": [], 
+        "intent": "affirm", 
+        "text": "sounds really good"
+      }, 
+      {
+        "entities": [], 
+        "intent": "card_lost", 
+        "text": "I cannot find my card"
+      }, 
+      {
+        "entities": [], 
+        "intent": "card_lost", 
+        "text": "My card is lost"
+      }, 
+      {
+        "entities": [], 
+        "intent": "card_lost", 
+        "text": "I am searching for my card everywhere"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 19, 
+            "end": 24, 
+            "value": "debit", 
+            "entity": "card_type"
+          }
+        ], 
+        "intent": "card_lost", 
+        "text": "i'm looking for my debit card"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 15, 
+            "end": 21, 
+            "value": "credit", 
+            "entity": "card_type"
+          }
+        ], 
+        "intent": "card_lost", 
+        "text": "I have lost my credit card"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 3, 
+            "end": 9, 
+            "value": "credit", 
+            "entity": "card_type"
+          }
+        ], 
+        "intent": "card_lost", 
+        "text": "My credit card is nowhere to be found"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 16, 
+            "end": 26, 
+            "value": "debit", 
+            "entity": "card_type"
+          }
+        ], 
+        "intent": "card_lost", 
+        "text": "I can't find my bancontact"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 17, 
+            "end": 27, 
+            "value": "debit", 
+            "entity": "card_type"
+          }
+        ], 
+        "intent": "card_lost", 
+        "text": "i am looking for mistercash but I don't find it"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "bye"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "goodbye"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "good bye"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "stop"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "end"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "farewell"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "Bye bye"
+      }, 
+      {
+        "entities": [], 
+        "intent": "goodbye", 
+        "text": "have a good one"
+      }
+    ], 
+    "entity_synonyms": [], 
+    "regex_features": [
+      {
+        "pattern": "[0-9]{5}", 
+        "name": "zipcode"
+      }
+    ]
+  }
+}
