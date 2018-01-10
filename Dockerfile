@@ -86,11 +86,7 @@ RUN pip install rasa_nlu
 RUN pip install -r alt_requirements/requirements_spacy_sklearn.txt
 
 RUN pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-1.2.0/en_core_web_sm-1.2.0.tar.gz --no-cache-dir > /dev/null \
-    && python -m spacy link en_core_web_sm en \
-    && pip install https://github.com/explosion/spacy-models/releases/download/nl_core_news_sm-2.0.0/nl_core_news_sm-2.0.0.tar.gz --no-cache-dir > /dev/null \
-    && python -m spacy link nl_core_news_sm nl \
-    && pip install https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-2.0.0/fr_core_news_sm-2.0.0.tar.gz --no-cache-dir > /dev/null \
-    && python -m spacy link fr_core_news_sm fr
+    && python -m spacy link en_core_web_sm en 
 
 RUN pip install rasa_core
 
@@ -102,6 +98,4 @@ VOLUME ["/app/projects", "/app/logs", "/app/data" , "/app/configs"]
 
 EXPOSE 5000 5005
 
-ENTRYPOINT ["./entrypoint.sh"]
-
-CMD ["start", "-c", "configs/config_servicing.json"]
+CMD ["python", "./bot.py", "--port=$PORT"]

@@ -10,6 +10,8 @@ import warnings
 from rasa_core import utils
 from rasa_core.actions import Action
 from rasa_core.agent import Agent
+from rasa_core.channels import HttpInputChannel
+from rasa_core.channels.facebook import FacebookInput
 from rasa_core.channels.console import ConsoleInputChannel
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.policies.keras_policy import KerasPolicy
@@ -42,19 +44,19 @@ class RestaurantPolicy(KerasPolicy):
         return model
 
 
-def train_dialogue(domain_file="data/servicing-bot/restaurant_domain.yml",
+def train_dialogue(domain_file="data/servicing-bot/domain.yml",
                    model_path="data/servicing-bot/dialogue",
                    training_data_file="data/servicing-bot/story/stories.md"):
-    agent = Agent(domain_file,
-                  policies=[MemoizationPolicy(), RestaurantPolicy()])
-
+    agent = Agent(domain_file,policies=[MemoizationPolicy(), KerasPolicy()])
+    train_nlu()
     agent.train(
             training_data_file,
-            max_history=3,
-            epochs=100,
-            batch_size=50,
-            augmentation_factor=50,
-            validation_split=0.2
+                max_history=3,
+                epochs=100,
+                batch_size=50,
+                augmentation_factor=50,
+                validation_split=0.2
+            
     )
 
     agent.persist(model_path)
@@ -66,7 +68,7 @@ def train_nlu():
     from rasa_nlu.config import RasaNLUConfig
     from rasa_nlu.model import Trainer
 
-    training_data = load_data('data/franken_data.json')
+    training_data = load_data('data/servicing-bot/nlu/rasa-servicing.json')
     trainer = Trainer(RasaNLUConfig("configs/config_servicing.json"))
     trainer.train(training_data)
     model_directory = trainer.persist('data/servicing-bot/', fixed_model_name="current")
@@ -74,7 +76,8 @@ def train_nlu():
     return model_directory
 
 
-def run(serve_forever=True):
+def run(serve_forever=True,port=5002):
+    
     interpreter = RasaNLUInterpreter("data/servicing-bot/rasa_servicing_en_nlu/current")
     agent = Agent.load("data/servicing-bot/dialogue", interpreter=interpreter)
     input_channel = FacebookInput(
@@ -84,30 +87,13 @@ def run(serve_forever=True):
                                   debug_mode=True    # enable debug mode for underlying fb library
                                   )
     if serve_forever:
-        agent.handle_channel(HttpInputChannel(5002, "/app", input_channel))
+        agent.handle_channel(HttpInputChannel(port, "/app", input_channel))
     return agent
 
 
 if __name__ == '__main__':
-    
-
-    parser = argparse.ArgumentParser(
-            description='starts the bot')
-
-    parser.add_argument(
-            'task',
-            choices=["train-nlu", "train-dialogue", "run"],
-            help="what the bot should do - e.g. run or train?")
-    task = parser.parse_args().task
-
-    # decide what to do based on first parameter of the script
-    if task == "train-nlu":
-        train_nlu()
-    elif task == "train-dialogue":
-        train_dialogue()
-    elif task == "run":
-        run()
-    else:
-        warnings.warn("Need to pass either 'train-nlu', 'train-dialogue' or "
-                      "'run' to use the script.")
-        exit(1)
+    parser = argparse.ArgumentParser(description='provide the port')
+    parser.add_argument('--port', type=str, help='Port number', required=True)
+    port = parser.parse_args().port
+    run(port)
+    exit(1)

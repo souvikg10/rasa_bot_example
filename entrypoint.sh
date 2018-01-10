@@ -41,7 +41,7 @@ function download_package {
 
 case ${1} in
     start)
-        exec python -m rasa_core.run -d data/servicing-bot/dialogue -u data/servicing-bot/rasa_servicing_en_nlu/current --port 5002 --connector facebook --credentials data/servicing-bot/credentials.yml
+        exec python -m rasa_nlu.server "${@:2}" 
         ;;
     run)
         exec "${@:2}"
