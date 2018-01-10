@@ -78,7 +78,7 @@ def train_nlu():
 
 def run(serve_forever=True,port=5002):
     
-    train_dialogue()
+    
     interpreter = RasaNLUInterpreter("data/servicing-bot/rasa_servicing_en_nlu/current")
     agent = Agent.load("data/servicing-bot/dialogue", interpreter=interpreter)
     input_channel = FacebookInput(
@@ -94,7 +94,7 @@ def run(serve_forever=True,port=5002):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='provide the port')
-    parser.add_argument('--port', type=str, help='Port number', required=True)
+    parser.add_argument('--port', type=int, help='Port number', required=True)
     port = parser.parse_args().port
     run(port)
     exit(1)
