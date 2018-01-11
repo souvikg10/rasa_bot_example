@@ -210,6 +210,113 @@
         "entities": [], 
         "intent": "goodbye", 
         "text": "have a good one"
+      }, 
+      {
+        "entities": [], 
+        "intent": "transferlimit", 
+        "text": "How much money can i transfer?"
+      }, 
+      {
+        "entities": [], 
+        "intent": "transferlimit", 
+        "text": "what are the limits for making a transfer"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 44, 
+            "end": 51, 
+            "value": "Belgium", 
+            "entity": "limit_destination"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "What are the limits of making a transfer to Belgium"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 39, 
+            "end": 55, 
+            "value": "Easy Banking App", 
+            "entity": "limit_channel"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "How much money can i transfer using my Easy Banking App"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 47, 
+            "end": 50, 
+            "value": "Easy Banking App", 
+            "entity": "limit_channel"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "what are the limits of making a transfer using EBA"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 28, 
+            "end": 34, 
+            "value": "France", 
+            "entity": "limit_destination"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "i want to make a tranfer to France but i don't know how much i am allowed to"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 9, 
+            "end": 12, 
+            "value": "Easy Banking App", 
+            "entity": "limit_channel"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "using my app, how much money i can transfer?"
+      }, 
+      {
+        "entities": [
+          {
+            "start": 64, 
+            "end": 71, 
+            "value": "Belgium", 
+            "entity": "limit_destination"
+          }
+        ], 
+        "intent": "transferlimit", 
+        "text": "is there a way to know, what amount i am allowed to transfer to Belgium"
+      }, 
+      {
+        "entities": [], 
+        "intent": "jokechicken", 
+        "text": "Did the chicken cross the road?"
+      }, 
+      {
+        "entities": [], 
+        "intent": "jokechicken", 
+        "text": "Why did the chicken cross the street"
+      }, 
+      {
+        "entities": [], 
+        "intent": "jokechicken", 
+        "text": "Did the chickem cross the road"
+      }, 
+      {
+        "entities": [], 
+        "intent": "jokechicken", 
+        "text": "Chicken was crossing the road"
+      }, 
+      {
+        "entities": [], 
+        "intent": "jokechicken", 
+        "text": "What happened to the chicken"
       }
     ], 
     "entity_synonyms": [], 

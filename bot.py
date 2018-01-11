@@ -48,7 +48,7 @@ def train_dialogue(domain_file="data/servicing-bot/domain.yml",
                    model_path="data/servicing-bot/dialogue",
                    training_data_file="data/servicing-bot/story/stories.md"):
     agent = Agent(domain_file,policies=[MemoizationPolicy(), KerasPolicy()])
-    train_nlu()
+    
     agent.train(
             training_data_file,
                 max_history=3,
@@ -72,16 +72,15 @@ def train_nlu():
     trainer = Trainer(RasaNLUConfig("configs/config_servicing.json"))
     trainer.train(training_data)
     model_directory = trainer.persist('data/servicing-bot/', fixed_model_name="current")
-
+    
     return model_directory
 
 
 def run(serve_forever=True,port=5002):
-    train_dialogue()
+    
     interpreter = RasaNLUInterpreter("data/servicing-bot/rasa_servicing_en_nlu/current")
     agent = Agent.load("data/servicing-bot/dialogue", interpreter=interpreter)
-    log = logging.getLogger('werkzeug')
-    log.setLevel(logging.DEBUG)
+    
     input_channel = FacebookInput(
                                   fb_verify="rasa_bot",  # you need tell facebook this token, to confirm your URL
                                   fb_secret="a893d01133725cbfb2c40fac5fe62d73",  # your app secret

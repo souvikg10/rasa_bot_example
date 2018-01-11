@@ -16,7 +16,7 @@ services:
       - $PWD/app/data:/app/data
     depends_on:
       - training_nlu
-    command: run python -m rasa_core.train -s bots/servicing-bot/data/stories.md -d bots/servicing-bot/domain.yml -o bots/servicing-bot/dialogue --epochs 300
+    command: run python -m rasa_core.train -s data/servicing-bot/story/stories.md -d data/servicing-bot/domain.yml -o data/servicing-bot/dialogue --epochs 100
   rasa_core:
     image: rasa_core_test
     volumes:
