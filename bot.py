@@ -83,8 +83,8 @@ def run(serve_forever=True,port=5002):
     
     input_channel = FacebookInput(
                                   fb_verify="rasa_bot",  # you need tell facebook this token, to confirm your URL
-                                  fb_secret="a893d01133725cbfb2c40fac5fe62d73",  # your app secret
-                                  fb_tokens={"1951390505111264": "EAADAwrooCtoBAJ5cUzCya4UG8vLG7TBXrXJoNoeAplZCadQlePYIwqQdgi2EPrlhRQkntyfmQcUrOYZAgBZByPZAqJQvLRc0N4wjNCSJUx7D4D8OvuRctMP3HcHughaM4l2ZCtmvaZCCr040MK1aTwkx2wmQ6EfQwKo2qrJkMZAhwZDZD"},   # page ids + tokens you subscribed to
+                                  fb_secret="",  # your app secret
+                                  fb_tokens={"": ""},   # page ids + tokens you subscribed to
                                   debug_mode=True    # enable debug mode for underlying fb library
                                   )
     if serve_forever:
