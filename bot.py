@@ -6,14 +6,14 @@ from __future__ import unicode_literals
 import argparse
 import logging
 import warnings
-
+import os
 from rasa_core import utils
 from rasa_core.actions import Action
-from rasa_core.agent import Agent
+from agent import Agent
 from rasa_core.channels import HttpInputChannel
 from rasa_core.channels.facebook import FacebookInput
 from rasa_core.channels.console import ConsoleInputChannel
-from rasa_core.interpreter import RasaNLUInterpreter
+from interpreter import RasaNLUHttpInterpreter
 from rasa_core.policies.keras_policy import KerasPolicy
 from rasa_core.policies.memoization import MemoizationPolicy
 
@@ -44,9 +44,9 @@ class RestaurantPolicy(KerasPolicy):
         return model
 
 
-def train_dialogue(domain_file="data/servicing-bot/domain.yml",
-                   model_path="data/servicing-bot/dialogue",
-                   training_data_file="data/servicing-bot/story/stories.md"):
+def train_dialogue(domain_file="data/bengalibot/domain.yml",
+                   model_path="data/bengalibot/dialogue",
+                   training_data_file="data/bengalibotbot/story/stories.md"):
     agent = Agent(domain_file,policies=[MemoizationPolicy(), KerasPolicy()])
     
     agent.train(
@@ -64,31 +64,32 @@ def train_dialogue(domain_file="data/servicing-bot/domain.yml",
 
 
 def train_nlu():
-    from rasa_nlu.converters import load_data
-    from rasa_nlu.config import RasaNLUConfig
+    from rasa_nlu.training_data import load_data
+    from rasa_nlu.config import RasaNLUModelConfig
     from rasa_nlu.model import Trainer
+    from rasa_nlu import config
 
-    training_data = load_data('data/servicing-bot/nlu/rasa-servicing.json')
-    trainer = Trainer(RasaNLUConfig("configs/config_servicing.json"))
+    training_data = load_data('data/bengalibot/nlu/training_data.json')
+    trainer = Trainer(config.load("configs/config.yaml"))
     trainer.train(training_data)
-    model_directory = trainer.persist('data/servicing-bot/', fixed_model_name="current")
-    
+    model_directory = trainer.persist('./data/bengalibot/nlu')
     return model_directory
 
 
 def run(serve_forever=True,port=5002):
+    #train_nlu()
+    #train_dialogue()
+    interpreter = RasaNLUHttpInterpreter(server="http://rasa_nlu_setting:5000",project = "bot1")
+    agent = Agent.load("data/bengalibot/dialogue", interpreter=interpreter)
     
-    interpreter = RasaNLUInterpreter("data/servicing-bot/rasa_servicing_en_nlu/current")
-    agent = Agent.load("data/servicing-bot/dialogue", interpreter=interpreter)
-    
-    input_channel = FacebookInput(
-                                  fb_verify="rasa_bot",  # you need tell facebook this token, to confirm your URL
-                                  fb_secret="",  # your app secret
-                                  fb_tokens={"": ""},   # page ids + tokens you subscribed to
-                                  debug_mode=True    # enable debug mode for underlying fb library
-                                  )
+   # input_channel = FacebookInput(
+    #                              fb_verify="rasa_bot",  # you need tell facebook this token, to confirm your URL
+     #                             fb_secret="",  # your app secret
+      #                            fb_tokens={"": ""},   # page ids + tokens you subscribed to
+       #                           debug_mode=True    # enable debug mode for underlying fb library
+   #                               )
     if serve_forever:
-        agent.handle_channel(HttpInputChannel(port, "/app", input_channel))
+        agent.handle_channel(ConsoleInputChannel()) ## Remove this console input with the input channel
     return agent
 
 

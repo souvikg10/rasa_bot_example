@@ -21,12 +21,10 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN pip install rasa_core
 
-RUN pip install spacy==1.8.2
+RUN pip install rasa_nlu==0.12.2
 
 RUN pip install flask
 
-VOLUME ["/app/projects", "/app/logs", "/app/data" , "/app/configs"]
-
 EXPOSE 5000 5005
 
-CMD python ./bot.py --port=$PORT
+CMD python ./bot.py --port 5005

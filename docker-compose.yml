@@ -1,33 +1,19 @@
 version: '3'
 services:
-  training_nlu:
-    image: rasa_core_test
-    build: .
-    volumes:
-      - $PWD/app/projects:/app/projects
-      - $PWD/app/logs:/app/logs
-      - $PWD/app/data:/app/data
-    command: run python -m rasa_nlu.train -c configs/config_servicing.json --fixed_model_name current
-  training_core:
-    image: rasa_core_test
-    volumes:
-      - $PWD/app/projects:/app/projects
-      - $PWD/app/logs:/app/logs
-      - $PWD/app/data:/app/data
-    depends_on:
-      - training_nlu
-    command: run python -m rasa_core.train -s data/servicing-bot/story/stories.md -d data/servicing-bot/domain.yml -o data/servicing-bot/dialogue --epochs 100
-  rasa_core:
-    image: rasa_core_test
-    volumes:
-      - $PWD/app/projects:/app/projects
-      - $PWD/app/logs:/app/logs
-      - $PWD/app/data:/app/data
+  rasa_nlu_setting:
+    image: rasa_nlu_setting
+    build:
+      context: ./rasa_nlu_setting
     ports:
       - "5000:5000"
+    command: python -m rasa_nlu.server -c config.yaml --path nlu --cors *
+  rasa_core_test:
+    image: rasa_core_test
+    build:
+      context: .
+    volumes:
+      - $PWD:/app
+    ports:
       - "5005:5005"
-      - "80:80"
-    depends_on:
-      - training_nlu
-      - training_core
-    command: run python -m rasa_core.run -d data/servicing-bot/dialogue -u data/servicing-bot/rasa_servicing_en_nlu/current --port 80 --connector facebook --credentials data/servicing-bot/credentials.yml
+    command: python -m rasa_core.server -d data/bengalibot/dialogue -o out.log --cors *
+  

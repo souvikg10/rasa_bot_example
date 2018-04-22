@@ -19,16 +19,18 @@ COPY . ${RASA_HOME}
 # use bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-
-RUN pip install rasa_nlu
-
 RUN pip install -r alt_requirements/requirements_spacy_sklearn.txt
 
-RUN pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-1.2.0/en_core_web_sm-1.2.0.tar.gz --no-cache-dir > /dev/null \
-    && python -m spacy link en_core_web_sm en 
+RUN git clone https://github.com/RasaHQ/rasa_nlu.git 
+	
+RUN cd rasa_nlu \
+	&& pip install -r requirements.txt \
+	&& pip install -e .
 
-VOLUME ["/app/projects", "/app/logs", "/app/data" , "/app/configs"]
 
 EXPOSE 5000 5005
+
+CMD python -m rasa_nlu.server -c config.yaml  --path nlu
+
 
 
