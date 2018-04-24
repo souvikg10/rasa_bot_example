@@ -1,4 +1,4 @@
-FROM rasa_nlu_setting
+FROM rasa_local_settings
 
 ENV RASA_DOCKER="YES" \
     RASA_HOME=/app \
