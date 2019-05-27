@@ -1,4 +1,4 @@
-# Rasa chatbot example
+# Rasa chatbot example(The project is outdated now - older version)
 This is an example rasa chatbot implementation that can be connected to your Facebook page.
 
 ## Proof of Concept
